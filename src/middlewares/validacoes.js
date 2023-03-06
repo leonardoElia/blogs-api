@@ -1,5 +1,6 @@
 const messageDisplay = '"displayName" length must be at least 8 characters long';
 const messagePassword = '"password" length must be at least 6 characters long';
+const jwt = require('jsonwebtoken');
 
 const validationLogin = (req, res, next) => {
     const { email, password } = req.body;
@@ -35,8 +36,25 @@ const validationLogin = (req, res, next) => {
         next();
     };
 
+    const validateToken = (req, res, next) => {
+        const secret = process.env.JWT_SECRET || 'secretJWT';
+        const { authorization } = req.headers;
+        console.log(authorization);
+        if (!authorization) {
+        return res.status(401).json({ message: 'Token not found' });
+        }
+
+        try {
+        jwt.verify(authorization, secret);
+        next();
+        } catch (e) {
+      return res.status(401).json({ message: 'Expired or invalid token' });
+        }
+    };
+
     module.exports = {
         validationLogin,
         validationUserNome,
         validationUserConta,
+        validateToken,
     };

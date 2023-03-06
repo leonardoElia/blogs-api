@@ -9,6 +9,14 @@ const solicitarCriarUsuario = async (displayName, email, password, image) => {
     return { type: null, message: novoUser };
 };
 
+const solicitarListamentoUsuario = async () => {
+const usuarios = await User.findAll({
+    attributes: ['id', 'displayName', 'email', 'image'],
+});
+return usuarios;
+};
+
 module.exports = {
     solicitarCriarUsuario,
+    solicitarListamentoUsuario,
 };

@@ -21,6 +21,8 @@ middlewares.validationUserNome,
 middlewares.validationUserConta,
 controllerUser.criarUser);
 
+app.get('/user', middlewares.validateToken, controllerUser.listarUsuarios);
+
 // É importante exportar a constante `app`,
 // para que possa ser utilizada pelo arquivo `src/server.js`
 module.exports = app;
