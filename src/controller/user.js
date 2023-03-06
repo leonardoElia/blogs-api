@@ -18,7 +18,19 @@ const listarUsuarios = async (_req, res) => {
     res.status(200).json(resultado);
 };
 
+const buscarUsuario = async (req, res) => {
+    const { id } = req.params;
+    const resultado = await serviceUsuario.solcitarUsuario(id);
+    const { type, message } = resultado;
+    if (type) {
+        return res.status(404).json({ message });
+    }
+
+    return res.status(200).json(message);
+};
+
 module.exports = {
     criarUser,
     listarUsuarios,
+    buscarUsuario,
 };

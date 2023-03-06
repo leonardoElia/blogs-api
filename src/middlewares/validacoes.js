@@ -39,7 +39,6 @@ const validationLogin = (req, res, next) => {
     const validateToken = (req, res, next) => {
         const secret = process.env.JWT_SECRET || 'secretJWT';
         const { authorization } = req.headers;
-        console.log(authorization);
         if (!authorization) {
         return res.status(401).json({ message: 'Token not found' });
         }
@@ -52,9 +51,16 @@ const validationLogin = (req, res, next) => {
         }
     };
 
+    const validateId = (req, res, next) => {
+        const { id } = req.params;
+        if (!id) return res.status(404).json({ message: 'User does not exist' });
+        next();
+    };
+
     module.exports = {
         validationLogin,
         validationUserNome,
         validationUserConta,
         validateToken,
+        validateId,
     };

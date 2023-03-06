@@ -16,7 +16,17 @@ const usuarios = await User.findAll({
 return usuarios;
 };
 
+const solcitarUsuario = async (id) => {
+    const usuario = await User.findByPk(id);
+    if (!usuario) {
+  return { type: 'usuario não encontrado', message: 'User does not exist' };
+    }
+    delete usuario.dataValues.password;
+    return { type: null, message: usuario };
+};
+
 module.exports = {
     solicitarCriarUsuario,
     solicitarListamentoUsuario,
+    solcitarUsuario,
 };
