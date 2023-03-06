@@ -7,6 +7,12 @@ console.log(registro);
 return registro;
 };
 
+const solicitarListamentoCategorias = async () => {
+    const resultado = await Category.findAll();
+    return resultado;
+};
+
 module.exports = {
     solicitarCriarCategoria,
+    solicitarListamentoCategorias,
 };

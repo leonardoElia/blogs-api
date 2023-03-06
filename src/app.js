@@ -30,6 +30,8 @@ middlewares.validateToken, middlewares.validateId, controllerUser.buscarUsuario)
 app.post('/categories',
 middlewares.validateToken, middlewares.validateName, controllerCategory.criarCategoria);
 
+app.get('/categories', middlewares.validateToken, controllerCategory.listarCategorias);
+
 // É importante exportar a constante `app`,
 // para que possa ser utilizada pelo arquivo `src/server.js`
 module.exports = app;
