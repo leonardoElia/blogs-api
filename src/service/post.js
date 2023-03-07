@@ -26,8 +26,8 @@ const solicitarCriarPost = async (title, content, categoryIds, user) => {
 
 const solicitarListarPosts = async () => {
     const resultado = await BlogPost.findAll({
-        include: [{ model: User, as: 'users', attributes: { exclude: ['password'] } },
-                  { model: Category, as: 'category', through: { attributes: [] } },
+        include: [{ model: User, as: 'user', attributes: { exclude: ['password'] } },
+                  { model: Category, as: 'categories', through: { attributes: [] } },
                 ],
     });
     return resultado;
