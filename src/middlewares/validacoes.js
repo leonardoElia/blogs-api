@@ -44,7 +44,8 @@ const validationLogin = (req, res, next) => {
         }
 
         try {
-        jwt.verify(authorization, secret);
+        const decode = jwt.verify(authorization, secret);
+        req.user = decode;
         next();
         } catch (e) {
       return res.status(401).json({ message: 'Expired or invalid token' });
@@ -63,6 +64,15 @@ const validationLogin = (req, res, next) => {
         next();
     };
 
+    const validatePost = (req, res, next) => {
+        const { title, content, categoryIds } = req.body;
+        if (title.length === 0 || content === 0 || categoryIds.length === 0) {
+            return res.status(400).json({ message: 'Some required fields are missing' });
+        }
+
+ next();
+    };
+
     module.exports = {
         validationLogin,
         validationUserNome,
@@ -70,4 +80,5 @@ const validationLogin = (req, res, next) => {
         validateToken,
         validateId,
         validateName,
+        validatePost,
     };

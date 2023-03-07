@@ -4,6 +4,7 @@ const middlewares = require('./middlewares/validacoes');
 const controllerLogin = require('./controller/login');
 const controllerUser = require('./controller/user');
 const controllerCategory = require('./controller/category');
+const controllerPost = require('./controller/post');
 // ...
 
 const app = express();
@@ -31,6 +32,8 @@ app.post('/categories',
 middlewares.validateToken, middlewares.validateName, controllerCategory.criarCategoria);
 
 app.get('/categories', middlewares.validateToken, controllerCategory.listarCategorias);
+
+app.post('/post', middlewares.validateToken, middlewares.validatePost, controllerPost.criarPost);
 
 // É importante exportar a constante `app`,
 // para que possa ser utilizada pelo arquivo `src/server.js`

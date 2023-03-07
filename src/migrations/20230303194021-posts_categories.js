@@ -8,7 +8,7 @@ module.exports = {
     field: 'post_id',
 
     references: {
-      model: 'users',
+      model: 'blog_posts',
       key: 'id'
     },
 
