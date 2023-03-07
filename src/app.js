@@ -35,6 +35,8 @@ app.get('/categories', middlewares.validateToken, controllerCategory.listarCateg
 
 app.post('/post', middlewares.validateToken, middlewares.validatePost, controllerPost.criarPost);
 
+app.get('/post', middlewares.validateToken, controllerPost.listarPost);
+
 // É importante exportar a constante `app`,
 // para que possa ser utilizada pelo arquivo `src/server.js`
 module.exports = app;
