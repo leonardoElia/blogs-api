@@ -44,6 +44,8 @@ middlewares.validateToken, middlewares.validateUpdate, controllerPost.atualizarP
 
 app.delete('/post/:id', middlewares.validateToken, controllerPost.deletetarPost);
 
+app.delete('/user/me', middlewares.validateToken, controllerUser.deletarUsuario);
+
 // É importante exportar a constante `app`,
 // para que possa ser utilizada pelo arquivo `src/server.js`
 module.exports = app;

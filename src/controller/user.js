@@ -29,8 +29,15 @@ const buscarUsuario = async (req, res) => {
     return res.status(200).json(message);
 };
 
+const deletarUsuario = async (req, res) => {
+    const { user } = req;
+    await serviceUsuario.solicitarDeletarUsuario(user);
+    return res.status(204).json();
+};
+
 module.exports = {
     criarUser,
     listarUsuarios,
     buscarUsuario,
+    deletarUsuario,
 };

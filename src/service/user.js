@@ -25,8 +25,14 @@ const solcitarUsuario = async (id) => {
     return { type: null, message: usuario };
 };
 
+const solicitarDeletarUsuario = async (user) => {
+  const { userId } = user.data;
+  await User.destroy({ where: { id: userId } });
+};
+
 module.exports = {
     solicitarCriarUsuario,
     solicitarListamentoUsuario,
     solcitarUsuario,
+    solicitarDeletarUsuario,
 };
