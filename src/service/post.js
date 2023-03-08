@@ -42,12 +42,27 @@ const solicitarPostId = async (id) => {
                   { model: Category, as: 'categories', through: { attributes: [] } },
                 ],
     });
-    console.log(resultado);
+   
     return { type: null, message: resultado };
+};
+
+const solicitarAtualizarPost = async (id, user, title, content) => {
+    const { userId } = user.data;
+     const post = await solicitarPostId(id);
+     const { type, message } = post;
+     if (type) return { type, message };
+     if (message.userId !== userId) {
+        return { type: 'não autorizado', message: 'Unauthorized user' };
+     }
+    
+      await BlogPost.update({ title, content }, { where: { id } });
+      const novoPost = await solicitarPostId(id);
+      return { type: null, message: novoPost.message }; 
 };
 
 module.exports = {
     solicitarCriarPost,
     solicitarListarPosts,
     solicitarPostId,
+    solicitarAtualizarPost,
   };

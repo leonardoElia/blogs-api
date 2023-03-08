@@ -27,8 +27,19 @@ const postId = async (req, res) => {
   return res.status(200).json(message);
 };
 
+const atualizarPost = async (req, res) => {
+  const { id } = req.params;
+  const { user } = req;
+  const { title, content } = req.body;
+  const resultado = await servicePost.solicitarAtualizarPost(id, user, title, content);
+  const { type, message } = resultado;
+  if (type) return res.status(401).json({ message });
+  return res.status(200).json(message);
+};
+
 module.exports = {
   criarPost,
   listarPost,
   postId,
+  atualizarPost,
 };

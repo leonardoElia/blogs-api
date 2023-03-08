@@ -73,6 +73,15 @@ const validationLogin = (req, res, next) => {
  next();
     };
 
+    const validateUpdate = (req, res, next) => {
+        const { title, content } = req.body;
+        if (title.length === 0 || content === 0) {
+            return res.status(400).json({ message: 'Some required fields are missing' });
+        }
+
+ next();
+    };
+
     module.exports = {
         validationLogin,
         validationUserNome,
@@ -81,4 +90,5 @@ const validationLogin = (req, res, next) => {
         validateId,
         validateName,
         validatePost,
+        validateUpdate,
     };
