@@ -37,9 +37,21 @@ const atualizarPost = async (req, res) => {
   return res.status(200).json(message);
 };
 
+const deletetarPost = async (req, res) => {
+  const { id } = req.params;
+  const { user } = req;
+  const resultado = await servicePost.solicitarDeletePost(id, user);
+  const { type, message } = resultado;
+  
+  if (type === 'blog') return res.status(404).json({ message });
+  if (type === 'não autorizado') return res.status(401).json({ message });
+  return res.status(204).json();
+};
+
 module.exports = {
   criarPost,
   listarPost,
   postId,
   atualizarPost,
+  deletetarPost,
 };

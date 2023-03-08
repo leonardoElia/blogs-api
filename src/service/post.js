@@ -60,9 +60,23 @@ const solicitarAtualizarPost = async (id, user, title, content) => {
       return { type: null, message: novoPost.message }; 
 };
 
+const solicitarDeletePost = async (id, user) => {
+    const { userId } = user.data;
+    const post = await solicitarPostId(id);
+    const { type, message } = post;
+    if (type) return { type, message };
+    if (message.userId !== userId) {
+       return { type: 'não autorizado', message: 'Unauthorized user' };
+    }
+
+    await BlogPost.destroy({ where: { id } });
+    return { type: null, message: null };
+}; 
+
 module.exports = {
     solicitarCriarPost,
     solicitarListarPosts,
     solicitarPostId,
     solicitarAtualizarPost,
+    solicitarDeletePost,
   };
