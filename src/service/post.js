@@ -33,7 +33,21 @@ const solicitarListarPosts = async () => {
     return resultado;
 };
 
+const solicitarPostId = async (id) => {
+    const verificaPost = await BlogPost.findByPk(id);
+    if (!verificaPost) return { type: 'blog', message: 'Post does not exist' };
+    const resultado = await BlogPost.findOne({
+        where: { id },
+        include: [{ model: User, as: 'user', attributes: { exclude: ['password'] } },
+                  { model: Category, as: 'categories', through: { attributes: [] } },
+                ],
+    });
+    console.log(resultado);
+    return { type: null, message: resultado };
+};
+
 module.exports = {
     solicitarCriarPost,
     solicitarListarPosts,
+    solicitarPostId,
   };

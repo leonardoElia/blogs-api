@@ -37,6 +37,8 @@ app.post('/post', middlewares.validateToken, middlewares.validatePost, controlle
 
 app.get('/post', middlewares.validateToken, controllerPost.listarPost);
 
+app.get('/post/:id', middlewares.validateToken, controllerPost.postId);
+
 // É importante exportar a constante `app`,
 // para que possa ser utilizada pelo arquivo `src/server.js`
 module.exports = app;
