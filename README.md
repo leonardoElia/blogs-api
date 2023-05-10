@@ -80,4 +80,17 @@ para apagar o mesmo. Determinadas funções da API só serão possiveis se a req
 <br />
 </details>
 
+---
+
+## tecnologias e ferramentas usadas
+* Mysql
+* Sequelize
+* Docker
+* Javascript
+* Mocha
+* Chai
+* Stub
+* Express
+* jsonwebtoken
+
 
