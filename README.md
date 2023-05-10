@@ -41,8 +41,6 @@ para apagar o mesmo. Determinadas funções da API só serão possiveis se a req
   > :information_source: Instale as dependências com `npm install`
   
   - **✨ Dica:** Para rodar o projeto desta forma, obrigatoriamente você deve ter o `node` instalado em seu computador.
-  - **✨ Dica:** O avaliador espera que a versão do `node` utilizada seja a 16.
-
   <br/>
 </details>
 
