@@ -44,4 +44,40 @@ para apagar o mesmo. Determinadas funções da API só serão possiveis se a req
   <br/>
 </details>
 
+<details>
+  <summary  id="diagrama"><strong>🎲 Diagrama ER e Entidades</strong></summary>
+
+  #### Diagrama de Entidade-Relacionamento
+
+  Para orientar a construção das tabelas através do ORM, utilize o *DER* a seguir:
+
+  ![DER](./public/der.png)
+
+  ---
+
+    #### Dicas de scripts prontos
+
+    - Deleta o banco de dados:
+    ```json
+    "drop": "npx sequelize-cli db:drop"
+    ```
+
+    - Cria o banco e gera as tabelas:
+    ```json
+    "prestart": "npx sequelize-cli db:create && npx sequelize-cli db:migrate"
+    ```
+
+    - Insere dados/Popula a tabela:
+    ```json
+    "seed": "npx sequelize-cli db:seed:all"
+    ```
+
+    - Faz todos os comandos a cima:
+    ```json
+    "all": ""npm run drop && npm run prestart && npm run seed"
+    ```
+
+<br />
+</details>
+
 
