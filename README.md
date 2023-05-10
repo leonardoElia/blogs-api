@@ -87,9 +87,6 @@ para apagar o mesmo. Determinadas funções da API só serão possiveis se a req
 * Sequelize
 * Docker
 * Javascript
-* Mocha
-* Chai
-* Stub
 * Express
 * jsonwebtoken
 
